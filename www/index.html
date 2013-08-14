@@ -17,26 +17,58 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World from iDSeefeld</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Verbinden mit Gerät...</p>
-                <p class="event received">Gerät ist bereit</p>
+<html ng-app>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/controllers.js"></script>
+    <title>Hello World from iDSeefeld</title>
+</head>
+<body ng-controller="PhoneListCtrl">
+    <div class="app">
+        <h1>PhoneGap</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Verbinden mit Gerät...</p>
+            <p class="event received">Gerät ist bereit</p>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <!--Sidebar content-->
+
+                Search:
+                <input ng-model="query">
+                Sort by:
+        <select ng-model="orderProp">
+            <option value="name">Alphabetical</option>
+            <option value="age">Newest</option>
+        </select>
+
+            </div>
+            <div class="span6">
+                <!--Body content-->
+
+                <ul class="phones">
+                    <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">{{phone.name}}
+            <p>{{phone.snippet}}</p>
+                    </li>
+                </ul>
+
             </div>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+    </div>
+
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
 </html>
