@@ -44,6 +44,15 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
+        xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('GET', 'http://dseefeld65.dyndns.org/datatest.aspx', true);
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4) {
+                document.getElementById('testdata').innerHTML = '<b>response: '+ xmlHttp.responseType +'</b>';
+            }
+        };
+        xmlHttp.send(null);
+
         console.log('Received Event: ' + id);
     }
 };
