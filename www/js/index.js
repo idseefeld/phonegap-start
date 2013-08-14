@@ -48,7 +48,9 @@ var app = {
         xmlHttp.open('GET', 'http://dseefeld65.dyndns.org/datatest.aspx', true);
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState == 4) {
-                document.getElementById('testdata').innerHTML = '<b>response: '+ xmlHttp.responseType +'</b>';
+                document.getElementById('testdata').innerHTML = '<b>response: ' + xmlHttp.responseType + '</b>';
+            } else {
+                document.getElementById('testdata').innerHTML = '<b>status: ' + xmlHttp.status + '</b>';
             }
         };
         xmlHttp.send(null);
