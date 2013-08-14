@@ -27,6 +27,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('online', this.onOnline, false);
     },
     // deviceready Event Handler
     //
@@ -34,6 +35,9 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+    },
+    onOnline: function () {
+        app.onlineEvent('online');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -44,17 +48,19 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
+        console.log('Received Event: ' + id);
+    },
+    onlineEvent: function (id) {
+        document.getElementById('testdata').innerHTML = '<b>Daten laden...</b>';
         xmlHttp = new XMLHttpRequest();
         xmlHttp.open('GET', 'http://dseefeld65.dyndns.org/datatest.aspx', true);
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState == 4) {
-                document.getElementById('testdata').innerHTML = '<b>response status: ' + xmlHttp.status +'<br />statusText: '+ xmlHttp.statusText + '<br />' + xmlHttp.responseText + '</b>';
+                document.getElementById('testdata').innerHTML = '<b>response status: ' + xmlHttp.status + '<br />statusText: ' + xmlHttp.statusText + '<br />' + xmlHttp.responseText + '</b>';
             } else {
                 document.getElementById('testdata').innerHTML = '<b>status: ' + xmlHttp.status + '</b>';
             }
         };
         xmlHttp.send(null);
-
-        console.log('Received Event: ' + id);
     }
 };

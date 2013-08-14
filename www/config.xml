@@ -6,10 +6,10 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0.0">
 
-	<name>AA iDSeefeld Test App</name>
+	<name>AA iDSeefeld</name>
 
 	<description>
-		Hello World sample application that responds to the deviceready event.
+		Hello World sample application that responds to the deviceready event and loads external data.
 	</description>
 
 	<author href="http://phonegap.com" email="support@phonegap.com">
@@ -66,6 +66,7 @@
         <gap:plugin name="Example" />
         A list of available plugins are available at https://build.phonegap.com/docs/plugins
     -->
+	<gap:plugin name="com.adobe.plugins.fastcanvas" />
 
 	<!-- Define app icon for each platform. -->
 	<icon src="ids-Logo.png" />
@@ -95,7 +96,6 @@
 	<gap:splash src="res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
 	<gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 
-	<gap:plugin name="com.adobe.plugins.fastcanvas" />
 	<!--
         Define access to external domains.
 
